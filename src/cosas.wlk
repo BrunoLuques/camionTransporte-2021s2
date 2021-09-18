@@ -49,19 +49,20 @@ object contenedorPortuario{
 	Si está vacío, su peligrosidad es 0.*/
 	var peso = 100
 	var nivelPeligrosidad = 0
-	var property cosas = []
+	const property carga = []
 	
-	method cosas(){return cosas}
+	method cosas(){return carga}
 	method peso(){return peso}
 	method nivelPeligrosidad(){return nivelPeligrosidad}
+	
 	method cargar(cosa){
-		cosas.add(cosa)
+		carga.add(cosa)
 		peso += cosa.peso()
-		nivelPeligrosidad = cosas.max({np => np.cosas.nivelPeligrosidad()})
+		
 		
 	}
 	
-	method descargar(cosa){cosas.remove(cosa)}
+	method descargar(cosa){carga.remove(cosa)}
 	
 } 
 

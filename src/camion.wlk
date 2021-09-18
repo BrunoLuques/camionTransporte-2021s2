@@ -59,12 +59,16 @@ object camion {
 	method tieneAlgoQuePesaEntre(min, max){
 		/*indica si el peso de alguna de las cosas que 
 		tiene el camión está en ese intervalo.*/
+		return
+			cosas.any({cosa => cosa.peso().between(min, max)})
 		
 	} 
 	
 	method cosaMasPesada(){ //hacer
 		/*la cosa más pesada que tenga el camión. 
 		Ojo que lo que se pide es la cosa y no su peso.*/
+		return
+			cosas.map({cosa => cosa.peso()})
 		
 	} 
 	
