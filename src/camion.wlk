@@ -61,7 +61,7 @@ object camion {
 		
 	} 
 	
-	method cosaMasPesada(){
+	method cosaMasPesada(){ //hacer
 		/*la cosa más pesada que tenga el camión. 
 		Ojo que lo que se pide es la cosa y no su peso.*/
 		

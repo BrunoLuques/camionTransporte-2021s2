@@ -38,7 +38,7 @@ object bateriaAntiaerea {
 	}
 }
 
-object contenedorPortuario{}
+object contenedorPortuario{} // hacer
 
 object residuosRadioactivos{
 	const peso = 0
