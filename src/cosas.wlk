@@ -1,3 +1,5 @@
+import camion.*
+
 object knightRider {
 	method peso() {return 500}
 	method nivelPeligrosidad() {return 10}
@@ -15,7 +17,7 @@ object paqueteDeLadrillos {
 	var cantidad = 0
 	
 	method asignarCantidad(cuantos){cantidad = cuantos}
-	method peso() {return 2000 * cantidad}
+	method peso() {return 2 * cantidad}
 	method nivelPeligrosidad() {return 2}
 }
 
@@ -31,10 +33,12 @@ object bateriaAntiaerea {
 	const estaConMisiles = true
 	
 	method peso(){
-		return return if (estaConMisiles) 300 else 200
+		return if (estaConMisiles) 300 else 200
 	}
+	
 	method nivelPeligrosidad() {
-		return return if (estaConMisiles) 100 else 0
+		return 
+			if (estaConMisiles) 100 else 0
 	}
 }
 

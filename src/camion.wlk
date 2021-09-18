@@ -12,7 +12,7 @@ object camion {
 		/*si el peso de cada uno de los objetos 
 		cargados es un número par.*/
 		return
-			cosas.filter({cosa => cosa.peso().even()}) // cambiar por all
+			cosas.all({cosa => cosa.peso().even()}) 
 		
 	}
 	
@@ -36,13 +36,13 @@ object camion {
 		/*devuelve una colección con los objetos cargados que superan 
 		el nivel de peligrosidad indicado.*/
 		return
-			cosas.filter({cosa =>cosa.nivelDePeligrosidad().max(nivel)})
+			cosas.filter({cosa =>cosa.nivelPeligrosidad() > nivel})
 	}
 	
 	method objetosMasPeligrososQue(elemento) {
 		/*devuelve una colección con los objetos cargados que son 
 		 más peligrosos que la cosa indicada.*/
-		 cosas.filter({cosa => cosa.nivelDePeligrosidad() > elemento.nivelDePeligrosidad()})
+		 cosas.filter({cosa => cosa.nivelPeligrosidad() > elemento.nivelPeligrosidad()})
 		 
 	}
 	
@@ -52,7 +52,7 @@ object camion {
 		 supera el nivel máximo de peligrosidad indicado.*/
 		 return 
 		 	not self.excedidoDePeso() and
-		 	cosas.count({cosa => cosa.nivelDePeligrosidad() < nivelMaximoPeligrosidad}) == 0
+		 	cosas.count({cosa => cosa.nivelPeligrosidad() < nivelMaximoPeligrosidad}) == 0
 	}
 	
 	method tieneAlgoQuePesaEntre(min, max){
