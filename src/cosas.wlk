@@ -44,7 +44,7 @@ object residuosRadioactivos{
 	const peso = 0
 	
 	method peso(){return peso}
-	method nivelDePeligrosidad(){return 200}
+	method nivelPeligrosidad(){return 200}
 }
 
 object embalajeDeSeguridad{
