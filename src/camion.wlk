@@ -8,6 +8,7 @@ object camion {
 	method cosas(){return cosas}
 	method cargar(unaCosa) {cosas.add(unaCosa)}
 	method descargar(cosa){cosas.remove(cosa)}
+	
 	method todoPesoPar(){
 		/*si el peso de cada uno de los objetos 
 		cargados es un número par.*/
@@ -52,7 +53,7 @@ object camion {
 		 supera el nivel máximo de peligrosidad indicado.*/
 		 return 
 		 	not self.excedidoDePeso() and
-		 	cosas.count({cosa => cosa.nivelPeligrosidad() < nivelMaximoPeligrosidad}) == 0
+		 	cosas.count({cosa => cosa.nivelPeligrosidad() > nivelMaximoPeligrosidad}) == 0
 	}
 	
 	method tieneAlgoQuePesaEntre(min, max){

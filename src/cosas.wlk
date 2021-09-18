@@ -42,7 +42,28 @@ object bateriaAntiaerea {
 	}
 }
 
-object contenedorPortuario{} // hacer
+object contenedorPortuario{
+	/*un contenedor puede tener otras cosas adentro. 
+	El peso es 100 + la suma de todas las cosas que estén adentro. 
+	Es tan peligroso como el objeto más peligroso que contiene. 
+	Si está vacío, su peligrosidad es 0.*/
+	var peso = 100
+	var nivelPeligrosidad = 0
+	var property cosas = []
+	
+	method cosas(){return cosas}
+	method peso(){return peso}
+	method nivelPeligrosidad(){return nivelPeligrosidad}
+	method cargar(cosa){
+		cosas.add(cosa)
+		peso += cosa.peso()
+		nivelPeligrosidad = cosas.max({np => np.cosas.nivelPeligrosidad()})
+		
+	}
+	
+	method descargar(cosa){cosas.remove(cosa)}
+	
+} 
 
 object residuosRadioactivos{
 	const peso = 0
