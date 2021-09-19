@@ -30,7 +30,7 @@ object arenaAGranel {
 }
 
 object bateriaAntiaerea {
-	const estaConMisiles = true
+	var estaConMisiles = true
 	
 	method peso(){
 		return if (estaConMisiles) 300 else 200
@@ -40,6 +40,8 @@ object bateriaAntiaerea {
 		return 
 			if (estaConMisiles) 100 else 0
 	}
+	
+	method descargarMisiles(){estaConMisiles = not estaConMisiles}
 }
 
 object contenedorPortuario{
@@ -58,8 +60,7 @@ object contenedorPortuario{
 	method cargar(cosa){
 		carga.add(cosa)
 		peso += cosa.peso()
-		
-		
+		nivelPeligrosidad =	carga.max({elemento => elemento.nivelPeligrosidad()}).nivelPeligrosidad()
 	}
 	
 	method descargar(cosa){carga.remove(cosa)}
@@ -67,15 +68,36 @@ object contenedorPortuario{
 } 
 
 object residuosRadioactivos{
-	const peso = 0
+	/*el peso es variable y su peligrosidad es 200*/
+	var peso = 0
 	
 	method peso(){return peso}
+	method asignarPeso(nuevoPeso){peso = nuevoPeso}
 	method nivelPeligrosidad(){return 200}
 }
 
 object embalajeDeSeguridad{
 	/*Es una cobertura que envuelve a cualquier otra cosa. 
 	El peso es el peso de la cosa que tenga adentro. 
-	El nivel de peligrosidad es la mitad del nivel de peligrosidad de lo que envuelve.*/
+	El nivel de peligrosidad es la mitad del nivel de lo que envuelve.*/
+	var peso = 0
+	var nivelPeligrosidad = 0
 	
+	method peso(){return peso}
+	method nivelPeligrosidad(){return nivelPeligrosidad}
+	method envolver(cosa){
+		peso = cosa.peso()
+		nivelPeligrosidad = cosa.nivelPeligrosidad() / 2
+	}
 }
+
+
+
+
+
+
+
+
+
+
+

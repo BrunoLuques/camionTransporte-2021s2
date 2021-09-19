@@ -43,6 +43,7 @@ object camion {
 	method objetosMasPeligrososQue(elemento) {
 		/*devuelve una colección con los objetos cargados que son 
 		 más peligrosos que la cosa indicada.*/
+		 return
 		 cosas.filter({cosa => cosa.nivelPeligrosidad() > elemento.nivelPeligrosidad()})
 		 
 	}
@@ -64,11 +65,11 @@ object camion {
 		
 	} 
 	
-	method cosaMasPesada(){ //hacer
+	method cosaMasPesada(){
 		/*la cosa más pesada que tenga el camión. 
 		Ojo que lo que se pide es la cosa y no su peso.*/
 		return
-			cosas.map({cosa => cosa.peso()})
+			cosas.max({cosa => cosa.peso()})
 		
 	} 
 	
