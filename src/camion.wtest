@@ -1,0 +1,43 @@
+/*Armar un test del camión, cargado con lo siguiente: 
+bumblebee como robot, la arena a granel con 150 kilos, 
+la batería antiaérea con los misiles puestos, y 
+el embalaje de seguridad poniéndole como contenido el paquete de ladrillos con 80 ladrillos.
+Para cada método, calcular qué resultado tiene que dar, y hacer el test correspondiente.
+Esto va en camionTest.wtest. 
+comentario final: costo bastante
+*/
+
+
+import camion.*
+import cosas.*
+
+test "Test de camion"{
+	
+	bumblebee.transformar()
+	arenaAGranel.asignarPeso(150)
+	paqueteDeLadrillos.asignarCantidad(80)
+	embalajeDeSeguridad.envolver(paqueteDeLadrillos)
+	camion.cargar(bumblebee)
+	camion.cargar(arenaAGranel)
+	camion.cargar(bateriaAntiaerea)
+	camion.cargar(embalajeDeSeguridad)
+	
+	assert.equals(camion.pesoTotal(), 2410)
+	assert.equals(camion.todoPesoPar(), true)
+	assert.equals(camion.hayAlgunoQuePesa(160), true)
+	assert.equals(camion.elDeNivel(100), bateriaAntiaerea)
+	assert.equals(camion.excedidoDePeso(), false)
+	assert.equals(camion.objetosQueSuperanPeligrosidad(90), [bateriaAntiaerea])
+	assert.equals(camion.objetosMasPeligrososQue(bumblebee), [bateriaAntiaerea])
+	assert.equals(camion.puedeCircularEnRuta(90), false)
+	assert.equals(camion.puedeCircularEnRuta(101), true)
+	assert.equals(camion.tieneAlgoQuePesaEntre(50, 800), true)
+	assert.equals(camion.tieneAlgoQuePesaEntre(900, 1000), false)
+	assert.equals(camion.cosaMasPesada(), bumblebee)
+	assert.equals(camion.pesos(), [800, 150, 300, 160])
+}
+
+
+
+
+

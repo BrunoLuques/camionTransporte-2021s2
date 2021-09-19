@@ -1,0 +1,28 @@
+/*Hay que hacer un pequeño test para cada una de las siguientes cosas: 
+paquete de ladrillos, batería antiaérea, contenedor portuario y embalaje de seguridad. 
+Al embalaje ponerle adentro los residuos radioactivos con 30 kg de peso. 
+Al contenedor, dos o tres cosas a elección. 
+Todo esto en un archivo cosasTest.wtest.*/
+ 
+import cosas.*
+	
+
+test "Test de cosas" {
+	
+	paqueteDeLadrillos.asignarCantidad(144)
+	contenedorPortuario.cargar(bateriaAntiaerea)
+	contenedorPortuario.cargar(paqueteDeLadrillos)
+	residuosRadioactivos.asignarPeso(30)
+	embalajeDeSeguridad.envolver(residuosRadioactivos)
+	
+	assert.equals(paqueteDeLadrillos.peso(), 288)
+	assert.equals(paqueteDeLadrillos.nivelPeligrosidad(), 2)
+	assert.equals(bateriaAntiaerea.peso(), 300)
+	assert.equals(bateriaAntiaerea.nivelPeligrosidad(), 100)
+	assert.equals(contenedorPortuario.peso(), 688)
+	assert.equals(contenedorPortuario.nivelPeligrosidad(), 100)
+	assert.equals(embalajeDeSeguridad.peso(), 30)
+	assert.equals(embalajeDeSeguridad.nivelPeligrosidad(), 100)
+}
+	
+
