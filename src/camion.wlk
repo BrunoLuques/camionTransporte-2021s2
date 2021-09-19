@@ -75,6 +75,7 @@ object camion {
 	method pesos(){
 		/*devuelve una lista con los pesos de 
 		cada cosa que tiene el camión.*/
-		
+		return
+			cosas.map({cosa => cosa.peso()})
 	}
 }
