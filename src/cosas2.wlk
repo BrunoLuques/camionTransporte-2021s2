@@ -136,7 +136,7 @@ object embalajeDeSeguridad{
 	El nivel de peligrosidad es la mitad del nivel de peligrosidad de lo que envuelve.*/
 	var cosaEnvuelta = residuosRadioactivos 
 	
-	method envolverCosa(cosaAEnvolver){ cosaEnvuelta = cosaAEnvolver}
+	method envolver(cosa){ cosaEnvuelta = cosa}
 	method peso(){ return cosaEnvuelta.peso()}
 	method nivelPeligrosidad() { return (cosaEnvuelta.nivelPeligrosidad())/2}
 	
