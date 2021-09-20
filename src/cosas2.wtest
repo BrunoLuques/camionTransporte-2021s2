@@ -1,0 +1,48 @@
+import camion2.*
+import cosas2.*
+
+test "test 1 de consecuencia de carga"{
+	bumblebee.consecuenciasDeCarga()
+	
+	assert.notThat(bumblebee.transformadoEnAuto())
+}
+
+test "test 2 de consecuencia de carga"{
+	paqueteDeLadrillos.consecuenciasDeCarga()
+	
+	assert.that(paqueteDeLadrillos.cantidad() >= 12)
+}
+
+
+test "test 3 de consecuencia de carga"{
+	arenaAGranel.consecuenciasDeCarga()
+	
+	assert.that(arenaAGranel.peso() >= 20)
+}
+
+test "test 4 de consecuencia de carga"{
+	bateriaAntiaerea.consecuenciasDeCarga()
+	
+	assert.that(bateriaAntiaerea.estaConMisiles())
+}
+
+test "test 5 de consecuencia de carga"{
+	contenedorPortuario.cargar(bumblebee)
+	contenedorPortuario.cargar(paqueteDeLadrillos)
+	contenedorPortuario.cargar(arenaAGranel)
+	contenedorPortuario.cargar(bateriaAntiaerea)
+	contenedorPortuario.cargar(residuosRadioactivos)
+	contenedorPortuario.consecuenciasDeCarga()
+	
+	assert.notThat(bumblebee.transformadoEnAuto())
+	assert.that(paqueteDeLadrillos.cantidad() >= 12)
+	assert.that(arenaAGranel.peso() >= 20)
+	assert.that(bateriaAntiaerea.estaConMisiles())
+	assert.that(residuosRadioactivos.peso() >= 15)
+}
+
+test "test 6 de consecuencia de carga"{
+	residuosRadioactivos.consecuenciasDeCarga()
+	
+	assert.that(residuosRadioactivos.peso() >= 15)
+}

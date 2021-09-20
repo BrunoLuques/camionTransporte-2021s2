@@ -1,0 +1,71 @@
+import camion2.*
+import cosas2.*
+
+test "test 1 de totalBultos" {
+	camion.cargar(bumblebee)
+	camion.cargar(embalajeDeSeguridad)
+	
+	assert.equals(camion.totalBultos(),2)
+}
+
+test "test 2 de totalBultos" {
+	camion.cargar(knightRider)
+	camion.cargar(arenaAGranel)
+	camion.cargar(residuosRadioactivos)
+	
+	assert.equals(camion.totalBultos(),1)
+}
+
+test "test 3 de totalBultos" {
+	paqueteDeLadrillos.asignarCantidad(144)
+	camion.cargar(paqueteDeLadrillos)
+	
+	
+	assert.equals(camion.totalBultos(),2)
+}
+
+test "test 4 de totalBultos" {
+	paqueteDeLadrillos.asignarCantidad(55)
+	camion.cargar(paqueteDeLadrillos)
+	
+	
+	assert.equals(camion.totalBultos(),1)
+}
+
+test "test 5 de totalBultos" {
+	paqueteDeLadrillos.asignarCantidad(350)
+	camion.cargar(paqueteDeLadrillos)
+	
+	
+	assert.equals(camion.totalBultos(),3)
+}
+
+test "test 6 de totalBultos" {
+	camion.cargar(bateriaAntiaerea)
+	
+	
+	assert.equals(camion.totalBultos(),2)
+}
+
+test "test 7 de totalBultos" {
+	contenedorPortuario.cargar(bumblebee)
+	contenedorPortuario.cargar(embalajeDeSeguridad)
+	contenedorPortuario.cargar(bateriaAntiaerea)
+	
+	camion.cargar(contenedorPortuario)
+	
+	
+	assert.equals(camion.totalBultos(),5)
+}
+
+
+test "test 8 de totalBultos" {
+	contenedorPortuario.cargar(knightRider)
+	contenedorPortuario.cargar(arenaAGranel)
+	contenedorPortuario.cargar(residuosRadioactivos)
+	
+	camion.cargar(contenedorPortuario)
+	
+	
+	assert.equals(camion.totalBultos(),2) 
+}
