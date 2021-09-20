@@ -51,18 +51,26 @@ object arenaAGranel {
 }
 
 object bateriaAntiaerea {
-	var estaConMisiles = true
-	
+	var estaConMisiles = false
+	// Batería antiaérea: 1 si no tiene misiles, 2 si tiene
 	method peso(){
 		return if (estaConMisiles) 300 else 200
 	}
 	
+	method cargarMisiles(){estaConMisiles = not estaConMisiles}
+	method estaConMisiles() { return estaConMisiles}  
 	method nivelPeligrosidad() {
 		return 
 			if (estaConMisiles) 100 else 0
 	}
 	
-	method descargarMisiles(){estaConMisiles = not estaConMisiles}
+	method bultos(){
+		return if (not estaConMisiles) {1} else {2}
+	}
+	
+	method consecuenciasDeCarga(){
+		self.cargarMisiles()
+	}
 }
 
 object contenedorPortuario{
@@ -72,42 +80,67 @@ object contenedorPortuario{
 	Si está vacío, su peligrosidad es 0.*/
 	var peso = 100
 	var nivelPeligrosidad = 0
-	const property carga = []
+	var property cosas = []
 	
-	method cosas(){return carga}
+	method cosas(){return cosas}
 	method peso(){return peso}
 	method nivelPeligrosidad(){return nivelPeligrosidad}
-	
 	method cargar(cosa){
-		carga.add(cosa)
+		cosas.add(cosa)
 		peso += cosa.peso()
-		nivelPeligrosidad =	carga.max({elemento => elemento.nivelPeligrosidad()}).nivelPeligrosidad()
+		nivelPeligrosidad =	cosas.max({elemento => elemento.nivelPeligrosidad()}).nivelPeligrosidad()
+		
 	}
 	
-	method descargar(cosa){carga.remove(cosa)}
+	method descargar(cosa){cosas.remove(cosa)}
 	
+	method bultos(){
+		var resultado = 0 
+		if (self.bulto1 ()) {resultado += 1}
+		if (self.bulto2()) {resultado += 2}
+		if (cosas.contains(bateriaAntiaerea)) {resultado += bateriaAntiaerea.bultos()}
+		if (cosas.contains(paqueteDeLadrillos)) {resultado += paqueteDeLadrillos.bultos()}
+		resultado += 1 
+		
+		return resultado 
+	}
+	
+	method consecuenciasDeCarga(){
+		cosas.forEach({ cosa => cosa.consecuenciasDeCarga() })
+	}
+	
+	method bulto1 (){
+		return cosas.contains(knightRider) and cosas.contains(arenaAGranel) and cosas.contains(residuosRadioactivos)
+	}
+	
+	method bulto2(){
+		return cosas.contains(bumblebee) and cosas.contains(embalajeDeSeguridad)
+	}
 } 
 
 object residuosRadioactivos{
-	/*el peso es variable y su peligrosidad es 200*/
 	var peso = 0
 	
+	method asignarPeso(pesoNuevo){ peso = pesoNuevo}
 	method peso(){return peso}
-	method asignarPeso(nuevoPeso){peso = nuevoPeso}
 	method nivelPeligrosidad(){return 200}
+	
+	method consecuenciasDeCarga(){
+		peso += 15
+	}
 }
 
 object embalajeDeSeguridad{
 	/*Es una cobertura que envuelve a cualquier otra cosa. 
 	El peso es el peso de la cosa que tenga adentro. 
-	El nivel de peligrosidad es la mitad del nivel de lo que envuelve.*/
-	var peso = 0
-	var nivelPeligrosidad = 0
+	El nivel de peligrosidad es la mitad del nivel de peligrosidad de lo que envuelve.*/
+	var cosaEnvuelta = residuosRadioactivos 
 	
-	method peso(){return peso}
-	method nivelPeligrosidad(){return nivelPeligrosidad}
-	method envolver(cosa){
-		peso = cosa.peso()
-		nivelPeligrosidad = cosa.nivelPeligrosidad() / 2
+	method envolverCosa(cosaAEnvolver){ cosaEnvuelta = cosaAEnvolver}
+	method peso(){ return cosaEnvuelta.peso()}
+	method nivelPeligrosidad() { return (cosaEnvuelta.nivelPeligrosidad())/2}
+	
+	method consecuenciasDeCarga(){
+		
 	}
 }
